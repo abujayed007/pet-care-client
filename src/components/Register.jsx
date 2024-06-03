@@ -1,11 +1,14 @@
 import { useContext } from "react";
 import Google from "./Google";
 import { AuthContext } from "../authContext/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const Register = () => {
     const {createUser} = useContext(AuthContext)
-
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location?.state?.from?.pathname || '/register'
     const handleSubmit = (e) =>{
         e.preventDefault()
         const form = e.target
@@ -15,6 +18,7 @@ const Register = () => {
         createUser(email, password)
         .then(data =>{
             console.log(data);
+            navigate(from, {replace:true})
         }).catch(err =>{
           console.log(err.message);
         })
@@ -43,7 +47,7 @@ const Register = () => {
                                 </label>
                             </div>
                             <div className="mt-2">
-                                <p>{}</p>
+                                <p></p>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Register</button>

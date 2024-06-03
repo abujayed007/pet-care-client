@@ -1,10 +1,15 @@
 import { useContext } from "react";
 import Google from "./Google";
 import { AuthContext } from "../authContext/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const Login = () => {
     const {signIn} = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const from = location?.state?.from?.pathname || "/";
 
     const handleSubmit = (e) =>{
         e.preventDefault()
@@ -15,6 +20,7 @@ const Login = () => {
         signIn(email, password)
         .then(data =>{
             console.log(data);
+            navigate(from, {replace:true})
         }).catch(err =>{
           console.log(err.message);
         })
