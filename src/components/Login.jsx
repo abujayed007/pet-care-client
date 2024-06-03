@@ -20,6 +20,7 @@ const Login = () => {
         signIn(email, password)
         .then(data =>{
             console.log(data);
+            from.reset('')
             navigate(from, {replace:true})
         }).catch(err =>{
           console.log(err.message);

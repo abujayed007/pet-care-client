@@ -1,12 +1,16 @@
 import { useContext } from "react";
 import { AuthContext } from "../../authContext/AuthProvider";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
-const AddPets = () => {
+const EditProduct = () => {
     const { user } = useContext(AuthContext)
+    const pets = useLoaderData()
+    const { name, image, breed, location, food, _id, email, type, age, text, color } = pets
+    console.log(pets);
 
-    const handleSubmit = (e) => {
+    const handleEdit = (e) => {
         e.preventDefault()
         const form = e.target
         const email = form.email.value
@@ -35,17 +39,17 @@ const AddPets = () => {
 
         Swal.fire({
             title: "Are you sure?",
-            text: "You want to add",
+            text: "You want to update your data",
             icon: "success",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Posted it"
+            confirmButtonText: "Yes, update it!"
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch('http://localhost:5000/pets', {
-                    method: "POST",
+                fetch(`http://localhost:5000/pets/${_id}`, {
+                    method: "PATCH",
                     headers: {
                         'Content-type': 'application/json'
                     },
@@ -53,59 +57,60 @@ const AddPets = () => {
                 }).then(res => res.json())
                     .then(data => {
                         console.log(data);
+                        // form.reset("")
                     })
+                // console.log(petInfo);
                 Swal.fire({
-                    title: "Added!",
-                    text: "Your file has been added successfully.",
+                    title: "Updated",
+                    text: "Your file has been updated.",
                     icon: "success"
                 });
             }
         });
 
 
-        // console.log(petInfo);
     }
     return (
         <div className="w-full shadow-slate-300  p-10">
             <h2 className="text-5xl text-center font-bold my-6">Add Your Pet</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleEdit}>
                 <div className="lg:grid w-full grid-cols-2 gap-x-6">
 
                     <div>
                         <label>User Email</label>
-                        <input type="text" required name="email" defaultValue={user?.email} disabled className="w-full border text-opacity-30 p-1 border-gray-500 rounded" />
+                        <input type="text" name="email" defaultValue={email} disabled className="w-full border text-opacity-30 p-1 border-gray-500 rounded" />
                     </div>
                     <div>
                         <label>Pet Name</label>
-                        <input type="text" required name="name" className="w-full border p-1 border-gray-500 rounded" />
+                        <input type="text" name="name" defaultValue={name} className="w-full border p-1 border-gray-500 rounded" />
                     </div>
                     <div>
                         <label>Location</label>
-                        <input type="text" required name="location" className="w-full border p-1 border-gray-500 rounded" />
+                        <input type="text" name="location" defaultValue={location} className="w-full border p-1 border-gray-500 rounded" />
                     </div>
                     <div>
                         <label>Breed Name</label>
-                        <input type="text" required name="breed" className="w-full border p-1 border-gray-500 rounded" />
+                        <input type="text" name="breed" defaultValue={breed} className="w-full border p-1 border-gray-500 rounded" />
                     </div>
                     <div>
                         <label>Age</label>
-                        <input type="text" required name="age" className="w-full border p-1 border-gray-500 rounded" />
+                        <input type="text" name="age" defaultValue={age} className="w-full border p-1 border-gray-500 rounded" />
                     </div>
                     <div>
                         <label>Food Habit</label>
-                        <input type="text" required name="food" className="w-full border p-1 border-gray-500 rounded" />
+                        <input type="text" name="food" defaultValue={food} className="w-full border p-1 border-gray-500 rounded" />
                     </div>
                     <div>
                         <label>Color</label>
-                        <input type="text" required name="color" className="w-full border p-1 border-gray-500 rounded" />
+                        <input type="text" name="color" defaultValue={color} className="w-full border p-1 border-gray-500 rounded" />
                     </div>
                     <div>
                         <label>Image</label>
-                        <input type="text" required name="image" className="w-full border p-1 border-gray-500 rounded" />
+                        <input type="text" name="image" defaultValue={image} className="w-full border p-1 border-gray-500 rounded" />
                     </div>
                     <div>
                         <label>Type</label>
-                        <select required name="type" className="w-full border border-gray-500 p-1 rounded">
+                        <select name="type" defaultValue={type} className="w-full border border-gray-500 p-1 rounded">
                             <option>Select--</option>
                             <option value="cat">Cat</option>
                             <option value="dog">Dog</option>
@@ -115,15 +120,15 @@ const AddPets = () => {
                     </div>
                     <div>
                         <label>Other Details</label>
-                        <textarea type="text" required name="details" className="w-full border p-1 border-gray-500 rounded" />
+                        <textarea type="text" name="details" defaultValue={text} className="w-full border p-1 border-gray-500 rounded" />
                     </div>
                 </div>
                 <div className="flex justify-center items-center my-5">
-                    <input type="submit" className="btn text-white font-semibold text-2xl bg-[#20A8D2]" value="Add Pet" />
+                    <input type="submit" className="btn text-white font-semibold text-2xl bg-[#20A8D2]" value="Update Pet" />
                 </div>
             </form>
         </div>
     );
 };
 
-export default AddPets
+export default EditProduct;

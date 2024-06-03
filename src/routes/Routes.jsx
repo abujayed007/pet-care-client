@@ -10,6 +10,10 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layouts/Dashboard/Dashboard";
 import AddProduct from "../layouts/Dashboard/AddProduct";
 import MyProfile from "../layouts/Dashboard/MyProfile";
+import AllPets from "../layouts/Dashboard/AllPets";
+import Pets from "../pages/Home/Pets";
+import EditProduct from "../layouts/Dashboard/EditProduct";
+import EditProfile from "../layouts/Dashboard/EditProfile";
 
 
 export const router = createBrowserRouter([
@@ -32,7 +36,12 @@ export const router = createBrowserRouter([
             {
                 path:'/shop',
                 element:<Shop/>
+            },
+            {
+                path:'/pets',
+                element:<Pets/>
             }
+          
         ]
     },
     {
@@ -55,6 +64,21 @@ export const router = createBrowserRouter([
                 path:'/dashboard/profile',
                 element:<PrivateRoute><MyProfile/></PrivateRoute>
             },
+            {
+                path:'/dashboard/allpets',
+                element:<PrivateRoute><AllPets/></PrivateRoute>,
+            },
+            {
+                path:'/dashboard/edit/:id',
+                element:<PrivateRoute><EditProduct/></PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/pets/${params.id}`)
+            },
+            {
+                path:'/dashboard/profile/edit/:id',
+                element:<PrivateRoute><EditProfile/></PrivateRoute>,
+                loader:({params}) => fetch(`http://localhost:5000/user/${params.id}`)
+            }
+
         ]
     }
 ])

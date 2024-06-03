@@ -1,7 +1,9 @@
 import About from "./About";
 import Banner from "./Banner";
 import Category from "./Category";
-import Products from "./Products";
+import Pets from "./Pets";
+
+
 
 
 
@@ -11,7 +13,7 @@ const Home = () => {
           <Banner/>
           <Category/>
           <About/>
-          <Products/>
+          <Pets/>
         </div>
     );
 };
