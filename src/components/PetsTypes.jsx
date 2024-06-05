@@ -9,7 +9,7 @@ const PetsTypes = () => {
     // console.log(petTypes);
 
     // useEffect(()=>{
-    //     fetch(`https://pet-care-server-wheat.vercel.app/pets/type/${petTypes.type}`)
+    //     fetch(`https://pet-care-server-gilt.vercel.app/pets/type/${petTypes.type}`)
     //     .then(res=>res.json())
     //     .then(data => {
     //         setTypes(data)

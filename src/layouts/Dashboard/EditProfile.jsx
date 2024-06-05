@@ -29,7 +29,7 @@ const EditProfile = () => {
 
         }
 
-        fetch(`https://pet-care-server-wheat.vercel.app/user/${user?._id}`, {
+        fetch(`https://pet-care-server-gilt.vercel.app/user/${user?._id}`, {
             method: "PATCH",
             headers: {
                 'Content-type': 'application/json',

@@ -15,7 +15,7 @@ const Google = () => {
                     name: user?.displayName,
                     email: user?.email
                 }
-                fetch('https://pet-care-server-wheat.vercel.app/user', {
+                fetch('https://pet-care-server-gilt.vercel.app/user', {
                     method: 'POST',
                     headers: {
                         'Content-type': 'application/json',

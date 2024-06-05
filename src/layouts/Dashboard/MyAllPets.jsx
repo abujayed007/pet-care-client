@@ -10,7 +10,7 @@ const MyAllPets = () => {
     const [pets, setPets] = useState([])
 
     useEffect(()=>{
-        fetch(`https://pet-care-server-wheat.vercel.app/pets/get/${user?.email}`)
+        fetch(`https://pet-care-server-gilt.vercel.app/pets/get/${user?.email}`)
         .then(res=>res.json())
         .then(data =>{
             setPets(data)

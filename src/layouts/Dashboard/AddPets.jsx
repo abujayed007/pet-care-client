@@ -45,7 +45,7 @@ const AddPets = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch('https://pet-care-server-wheat.vercel.app/pets', {
+                fetch('https://pet-care-server-gilt.vercel.app/pets', {
                     method: "POST",
                     headers: {
                         'Content-type': 'application/json',
