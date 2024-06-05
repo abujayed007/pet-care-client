@@ -20,13 +20,14 @@ const SinglePetCards = ({ pet, onDelete }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://pet-care-server-gilt.vercel.app/pets/${_id}`, {
+                fetch(`http://localhost:5000/pets/${_id}`, {
                     method: 'DELETE',
                     headers:{
                         'Content-type':'application/json',
                         authorization:`Bearer ${token}`
                     }
-                }).then(data => {
+                }).then(res => res.json())
+                .then(data => {
                     onDelete(_id)
                     console.log(data)
 

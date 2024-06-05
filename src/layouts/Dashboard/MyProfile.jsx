@@ -10,7 +10,7 @@ const MyProfile = () => {
 
 
     useEffect(() => {
-        fetch(`https://pet-care-server-gilt.vercel.app/user/${user?.email}`)
+        fetch(`http://localhost:5000/user/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setUserInfo(data)
@@ -31,7 +31,7 @@ const MyProfile = () => {
                     {userInfo?.image ? <img className='w-24 h-w-24 border border-gray-300 my-8 rounded-full' src={userInfo?.image} /> : <img className='w-24 h-w-24 border border-gray-300 my-8  rounded-full' src='https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png' />}
                 </div>
                 <div className="my-5 flex justify-center">
-                    <Link to={`/dashboard/profile/edit/${userInfo?.email}`} className=" btn bg-blue-500 w-1/2  text-md text-white">Edit Profile</Link>
+                    <Link to={`/dashboard/profile/edit/${userInfo?._id}`} className=" btn bg-blue-500 w-1/2  text-md text-white">Edit Profile</Link>
                 </div>
                 <div>
                     <h2 className="text-xl"><strong>Name :</strong> {userInfo?.name}</h2>

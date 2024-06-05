@@ -45,7 +45,7 @@ const AddPets = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch('https://pet-care-server-gilt.vercel.app/pets', {
+                fetch('http://localhost:5000/pets', {
                     method: "POST",
                     headers: {
                         'Content-type': 'application/json',
@@ -73,7 +73,7 @@ const AddPets = () => {
             <form onSubmit={handleSubmit}>
                 <div className="lg:grid w-full grid-cols-2 gap-x-6">
 
-                    <div hidden>
+                    <div >
                         <label>User Email</label>
                         <input type="text" required name="email" defaultValue={user?.email} disabled className="w-full border text-opacity-30 p-1 border-gray-500 rounded" />
                     </div>

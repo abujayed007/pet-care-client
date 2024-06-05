@@ -15,7 +15,7 @@ const Google = () => {
                     name: user?.displayName,
                     email: user?.email
                 }
-                fetch('https://pet-care-server-gilt.vercel.app/user', {
+                fetch('http://localhost:5000/user', {
                     method: 'POST',
                     headers: {
                         'Content-type': 'application/json',

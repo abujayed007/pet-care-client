@@ -6,16 +6,7 @@ import { useState } from "react";
 const PetsTypes = () => {
     const petTypes = useLoaderData()
     const [types, setTypes] = useState(petTypes)
-    // console.log(petTypes);
-
-    // useEffect(()=>{
-    //     fetch(`https://pet-care-server-gilt.vercel.app/pets/type/${petTypes.type}`)
-    //     .then(res=>res.json())
-    //     .then(data => {
-    //         setTypes(data)
-    //         console.log(data);
-    //     })
-    // },[petTypes])
+    
     return (
         <div className="min-h-screen  ">
             <div>

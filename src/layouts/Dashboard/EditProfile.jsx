@@ -5,7 +5,7 @@ import { useLoaderData } from "react-router-dom";
 
 const EditProfile = () => {
     const user = useLoaderData()
-    // console.log(user)
+    console.log(user)
     const token = localStorage.getItem('token')
 
 
@@ -29,7 +29,7 @@ const EditProfile = () => {
 
         }
 
-        fetch(`https://pet-care-server-gilt.vercel.app/user/${user?._id}`, {
+        fetch(`http://localhost:5000/user/${user?.email}`, {
             method: "PATCH",
             headers: {
                 'Content-type': 'application/json',

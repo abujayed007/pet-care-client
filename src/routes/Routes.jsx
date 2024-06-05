@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
             {
                 path:'/pets/:id',
                 element:<TotalPetCardDetails/>,
-                loader:({params}) =>fetch(`https://pet-care-server-gilt.vercel.app/pets/${params.id}`)
+                loader:({params}) =>fetch(`http://localhost:5000/pets/${params.id}`)
             },
             {
                 path:'/about',
@@ -61,14 +61,14 @@ export const router = createBrowserRouter([
             {
                 path:'/type/:type',
                 element:<PetsTypes/>,
-                loader:({params})=>fetch(`https://pet-care-server-gilt.vercel.app/pets/type/${params.type}`)
+                loader:({params})=>fetch(`http://localhost:5000/pets/type/${params.type}`)
             }
           
         ]
     },
     {
         path:'/dashboard',
-        element:<DashboardLayout></DashboardLayout>,
+        element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children:[
             {
                 path:'',
@@ -84,7 +84,8 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/dashboard/profile',
-                element:<PrivateRoute><MyProfile/></PrivateRoute>
+                element:<PrivateRoute><MyProfile/></PrivateRoute>,
+                
             },
             {
                 path:'/dashboard/allpets',
@@ -93,12 +94,12 @@ export const router = createBrowserRouter([
             {
                 path:'/dashboard/edit/:id',
                 element:<PrivateRoute><EditProduct/></PrivateRoute>,
-                loader: ({params}) => fetch(`https://pet-care-server-gilt.vercel.app/pets/${params.id}`)
+                loader:async ({params}) =>await fetch(`http://localhost:5000/pets/${params.id}`)
             },
             {
                 path:'/dashboard/profile/edit/:id',
                 element:<PrivateRoute><EditProfile/></PrivateRoute>,
-                loader:({params}) => fetch(`https://pet-care-server-gilt.vercel.app/user/${params.id}`)
+                loader:({params}) => fetch(`http://localhost:5000/user/get/${params.id}`)
             }
 
         ]

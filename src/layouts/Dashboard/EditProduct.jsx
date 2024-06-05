@@ -48,8 +48,8 @@ const EditProduct = () => {
             confirmButtonText: "Yes, update it!"
         }).then((result) => {
             if (result.isConfirmed) {
-
-                fetch(`https://pet-care-server-gilt.vercel.app/pets/${_id}`, {
+                console.log(result);
+                fetch(`http://localhost:5000/pets/${_id}`, {
                     method: "PATCH",
                     headers: {
                         'Content-type': 'application/json',
@@ -78,7 +78,7 @@ const EditProduct = () => {
             <form onSubmit={handleEdit}>
                 <div className="lg:grid w-full grid-cols-2 gap-x-6">
 
-                    <div className="hidden">
+                    <div className="">
                         <label>User Email</label>
                         <input type="text" name="email" defaultValue={email} disabled className="w-full border text-opacity-30 p-1 border-gray-500 rounded" />
                     </div>

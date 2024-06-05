@@ -8,7 +8,7 @@ const Pets = () => {
     const [search, setSearch] = useState('')
 
     useEffect(() => {
-        fetch('https://pet-care-server-gilt.vercel.app/pets')
+        fetch('http://localhost:5000/pets')
             .then(res => res.json())
             .then(data => {
                 setPets(data)
@@ -19,7 +19,7 @@ const Pets = () => {
     const handleSearch = e => {
         e.preventDefault()
         // const searchData = e.target.search.value;
-        // fetch(`https://pet-care-server-gilt.vercel.app/pets?name=${search}`)
+        // fetch(`http://localhost:5000/pets?name=${search}`)
         // .then(res => res.json())
         //     .then(data => {
         //         setSearch(data)

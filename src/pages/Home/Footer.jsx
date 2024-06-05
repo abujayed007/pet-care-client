@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <div>
-            <footer className="footer p-10 bg-neutral-400 text-neutral-content">
+        <div className="">
+            <footer className="footer p-20  bg-neutral-400 text-neutral-content">
                 <aside>
                     <img className="w-20 text-white" src="https://cdn-icons-png.flaticon.com/512/107/107777.png" alt="" />
                     <p>ACME Industries Ltd.<br />Providing reliable tech since 1992</p>
