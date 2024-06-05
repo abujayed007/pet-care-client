@@ -20,7 +20,7 @@ const SinglePetCards = ({ pet, onDelete }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/pets/${_id}`, {
+                fetch(`https://pet-care-server-snowy.vercel.app/pets/${_id}`, {
                     method: 'DELETE',
                     headers:{
                         'Content-type':'application/json',

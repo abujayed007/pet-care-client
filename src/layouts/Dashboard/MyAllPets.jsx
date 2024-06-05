@@ -10,7 +10,7 @@ const MyAllPets = () => {
     const [pets, setPets] = useState([])
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/pets`)
+        fetch(`https://pet-care-server-snowy.vercel.app/pets`)
         .then(res=>res.json())
         .then(data =>{
             setPets(data)

@@ -29,7 +29,7 @@ const Register = () => {
         createUser(email, password)
             .then(data => {
                 // console.log(data);
-                fetch('http://localhost:5000/user', {
+                fetch('https://pet-care-server-snowy.vercel.app/user', {
                     method: 'POST',
                     headers: {
                         'Content-type': 'application/json'

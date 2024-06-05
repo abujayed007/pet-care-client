@@ -6,7 +6,7 @@ const AllPets = () => {
     // const [search, setSearch] = useState('')
 
     useEffect(() => {
-        fetch('http://localhost:5000/pets')
+        fetch('https://pet-care-server-snowy.vercel.app/pets')
             .then(res => res.json())
             .then(data => {
                 setPets(data)
@@ -17,7 +17,7 @@ const AllPets = () => {
     // const handleSearch = e => {
     //     e.preventDefault()
     //     const searchData = e.target.search.value;
-    //     fetch(`http://localhost:5000/pets/${searchData}`)
+    //     fetch(`https://pet-care-server-snowy.vercel.app/pets/${searchData}`)
     //     .then(res => res.json())
     //         .then(data => {
     //             setSearch(data)

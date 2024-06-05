@@ -49,7 +49,7 @@ const EditProduct = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 console.log(result);
-                fetch(`http://localhost:5000/pets/${_id}`, {
+                fetch(`https://pet-care-server-snowy.vercel.app/pets/${_id}`, {
                     method: "PATCH",
                     headers: {
                         'Content-type': 'application/json',

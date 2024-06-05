@@ -8,7 +8,7 @@ const Pets = () => {
     const [search, setSearch] = useState('')
 
     useEffect(() => {
-        fetch('http://localhost:5000/pets')
+        fetch('https://pet-care-server-snowy.vercel.app/pets')
             .then(res => res.json())
             .then(data => {
                 setPets(data)
@@ -19,7 +19,7 @@ const Pets = () => {
     const handleSearch = e => {
         e.preventDefault()
         // const searchData = e.target.search.value;
-        // fetch(`http://localhost:5000/pets?name=${search}`)
+        // fetch(`https://pet-care-server-snowy.vercel.app/pets?name=${search}`)
         // .then(res => res.json())
         //     .then(data => {
         //         setSearch(data)

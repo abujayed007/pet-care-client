@@ -45,7 +45,7 @@ const AddPets = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch('http://localhost:5000/pets', {
+                fetch('https://pet-care-server-snowy.vercel.app/pets', {
                     method: "POST",
                     headers: {
                         'Content-type': 'application/json',

@@ -10,7 +10,7 @@ const MyProfile = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${user?.email}`)
+        fetch(`https://pet-care-server-snowy.vercel.app/user/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setUserInfo(data)
