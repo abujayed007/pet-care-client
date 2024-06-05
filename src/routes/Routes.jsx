@@ -10,10 +10,14 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layouts/Dashboard/Dashboard";
 import AddProduct from "../layouts/Dashboard/AddProduct";
 import MyProfile from "../layouts/Dashboard/MyProfile";
-import AllPets from "../layouts/Dashboard/AllPets";
-import Pets from "../pages/Home/Pets";
 import EditProduct from "../layouts/Dashboard/EditProduct";
 import EditProfile from "../layouts/Dashboard/EditProfile";
+import About from "../components/About";
+import Category from "../pages/Home/Category";
+import MyAllPets from "../layouts/Dashboard/MyAllPets";
+import AllPets from "../components/AllPets";
+import PetsTypes from "../components/PetsTypes";
+import TotalPetCardDetails from "../components/TotalPetCardDetails";
 
 
 export const router = createBrowserRouter([
@@ -39,7 +43,25 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/pets',
-                element:<Pets/>
+                element:<AllPets/>
+            },
+            {
+                path:'/pets/:id',
+                element:<TotalPetCardDetails/>,
+                loader:({params}) =>fetch(`https://pet-care-server-wheat.vercel.app/pets/${params.id}`)
+            },
+            {
+                path:'/about',
+                element:<About/>
+            },
+            {
+                path:'/category',
+                element:<Category/>,
+            },
+            {
+                path:'/type/:type',
+                element:<PetsTypes/>,
+                loader:({params})=>fetch(`https://pet-care-server-wheat.vercel.app/pets/type/${params.type}`)
             }
           
         ]
@@ -66,17 +88,17 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/dashboard/allpets',
-                element:<PrivateRoute><AllPets/></PrivateRoute>,
+                element:<PrivateRoute><MyAllPets/></PrivateRoute>,
             },
             {
                 path:'/dashboard/edit/:id',
                 element:<PrivateRoute><EditProduct/></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/pets/${params.id}`)
+                loader: ({params}) => fetch(`https://pet-care-server-wheat.vercel.app/pets/${params.id}`)
             },
             {
                 path:'/dashboard/profile/edit/:id',
                 element:<PrivateRoute><EditProfile/></PrivateRoute>,
-                loader:({params}) => fetch(`http://localhost:5000/user/${params.id}`)
+                loader:({params}) => fetch(`https://pet-care-server-wheat.vercel.app/user/${params.id}`)
             }
 
         ]

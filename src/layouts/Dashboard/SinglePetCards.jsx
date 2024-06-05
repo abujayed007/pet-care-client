@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const SinglePetCards = ({ pet, onDelete }) => {
-
+    const token = localStorage.getItem('token')
     const { name, image, breed, location, food, _id } = pet
 
 
@@ -20,8 +20,12 @@ const SinglePetCards = ({ pet, onDelete }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/pets/${_id}`, {
-                    method: 'DELETE'
+                fetch(`https://pet-care-server-wheat.vercel.app/pets/${_id}`, {
+                    method: 'DELETE',
+                    headers:{
+                        'Content-type':'application/json',
+                        authorization:`Bearer ${token}`
+                    }
                 }).then(data => {
                     onDelete(_id)
                     console.log(data)
@@ -47,7 +51,7 @@ const SinglePetCards = ({ pet, onDelete }) => {
                     <p>Food Habit : {food}</p>
                 </div>
                 <div className='flex justify-around '>
-                    <Link className='btn text-white font-semibold bg-[#007AB9]'>Details</Link>
+                    <Link to={`/pets/${_id}`} className='btn text-white font-semibold bg-[#007AB9]'>Details</Link>
                     <Link to={`/dashboard/edit/${_id}`} className='btn text-white font-semibold bg-[#c8e043]'>Edit</Link>
                     <Link onClick={handleDelete} className='btn text-white font-semibold bg-[#eb3d3d]'>Delete</Link>
                 </div>

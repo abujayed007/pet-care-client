@@ -8,8 +8,9 @@ const MyProfile = () => {
     const { user } = useContext(AuthContext)
     const [userInfo, setUserInfo] = useState()
 
+
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${user?.email}`)
+        fetch(`https://pet-care-server-wheat.vercel.app/user/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setUserInfo(data)
@@ -27,17 +28,17 @@ const MyProfile = () => {
 
 
                 <div className="flex justify-center">
-                    {userInfo?.image ? <img className='w-14 h-14 border border-gray-300 my-8 rounded-full' src={userInfo?.image} /> : <img className='w-14 h-14 border border-gray-300 my-8  rounded-full' src='https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png' />}
+                    {userInfo?.image ? <img className='w-24 h-w-24 border border-gray-300 my-8 rounded-full' src={userInfo?.image} /> : <img className='w-24 h-w-24 border border-gray-300 my-8  rounded-full' src='https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png' />}
                 </div>
                 <div className="my-5 flex justify-center">
                     <Link to={`/dashboard/profile/edit/${userInfo?.email}`} className=" btn bg-blue-500 w-1/2  text-md text-white">Edit Profile</Link>
                 </div>
                 <div>
-                    <h2 className="text-xl">Name : {userInfo?.name}</h2>
-                    <h2 className="text-xl">Email : {userInfo?.email}</h2>
-                    {userInfo?.age &&<h2 className="text-xl">Age : {userInfo?.age}</h2>}
-                    {userInfo?.address &&<h2 className="text-xl">Email : {userInfo?.address}</h2>}
-                    {userInfo?.phone &&<h2 className="text-xl">Email : {userInfo?.phone}</h2>}
+                    <h2 className="text-xl"><strong>Name :</strong> {userInfo?.name}</h2>
+                    <h2 className="text-xl"><strong>Email :</strong> {userInfo?.email}</h2>
+                    {userInfo?.age &&<h2 className="text-xl"><strong>Age :</strong> {userInfo?.age}</h2>}
+                    {userInfo?.address &&<h2 className="text-xl"><strong>Email :</strong> {userInfo?.address}</h2>}
+                    {userInfo?.phone &&<h2 className="text-xl"><strong>Phone :</strong> {userInfo?.phone}</h2>}
                 </div>
 
             </div>

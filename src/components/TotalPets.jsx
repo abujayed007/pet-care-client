@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-
-const PetCard = ({ pet }) => {
+const TotalPets = ({pet}) => {
     const {name, image, breed, details , location,food,_id} = pet
     return (
         <div className="card w-80  bg-base-100 shadow-xl ">
@@ -20,4 +19,4 @@ const PetCard = ({ pet }) => {
     );
 };
 
-export default PetCard;
+export default TotalPets;

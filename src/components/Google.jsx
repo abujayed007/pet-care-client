@@ -5,6 +5,7 @@ import { AuthContext } from '../authContext/AuthProvider';
 
 const Google = () => {
     const { googleLogin } = useContext(AuthContext)
+    const token = localStorage.getItem('token')
 
     const handleGoogle = () => {
         googleLogin()
@@ -14,15 +15,17 @@ const Google = () => {
                     name: user?.displayName,
                     email: user?.email
                 }
-                fetch('http://localhost:5000/user', {
+                fetch('https://pet-care-server-wheat.vercel.app/user', {
                     method: 'POST',
                     headers: {
-                        'Content-type': 'application/json'
+                        'Content-type': 'application/json',
+                        authorization:`Bearer ${token}`
                     },
                     body: JSON.stringify(userInfo)
                 }).then(res => res.json())
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
+                        localStorage.setItem('token', data?.token)
                     })
             })
     }

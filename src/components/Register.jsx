@@ -1,11 +1,15 @@
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import Google from "./Google";
 import { AuthContext } from "../authContext/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { sendPasswordResetEmail } from "firebase/auth";
+import auth from "../firebase/firebase.config";
 
 
 const Register = () => {
     const { createUser } = useContext(AuthContext)
+    const [error, setError] = useState('')
+    const emailRef = useRef()
     const location = useLocation()
     const navigate = useNavigate()
     const from = location?.state?.from?.pathname || '/'
@@ -25,7 +29,7 @@ const Register = () => {
         createUser(email, password)
             .then(data => {
                 // console.log(data);
-                fetch('http://localhost:5000/user', {
+                fetch('https://pet-care-server-wheat.vercel.app/user', {
                     method: 'POST',
                     headers: {
                         'Content-type': 'application/json'
@@ -37,8 +41,25 @@ const Register = () => {
                     })
                 navigate(from)
             }).catch(err => {
+                setError(err.message)
                 console.log(err.message);
             })
+    }
+
+    const handleResetPassword = () =>{
+        const email = emailRef.current.value
+        if(!email){
+           alert("prease provide a email ");
+        }
+        else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)){
+            return
+        }
+        sendPasswordResetEmail(auth, email)
+        .then(()=>{
+            alert('Check your email')
+        }).catch(err =>{
+            alert(err.message)
+        })
     }
     return (
         <div className="hero min-h-screen ">
@@ -66,12 +87,13 @@ const Register = () => {
                             </label>
                             <input type="password" placeholder="Password" name='password' className="input input-bordered" required />
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                <a onClick={handleResetPassword} href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
                         <div className="mt-2">
-                            <p></p>
+                            {error && <p className="text-red-500 ">{error.split(` `)[8]}</p>}
                         </div>
+                        <p>Already have an account <Link to='/login' className="text-blue-500">Login</Link></p>
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
                         </div>

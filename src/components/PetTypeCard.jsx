@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-
-const PetCard = ({ pet }) => {
-    const {name, image, breed, details , location,food,_id} = pet
+const PetTypeCard = ({type:pet}) => {
+    const {name, image, breed, details ,_id, location,food} = pet
     return (
         <div className="card w-80  bg-base-100 shadow-xl ">
             <figure><img className='h-80 w-80' src={image} /></figure>
@@ -20,4 +20,4 @@ const PetCard = ({ pet }) => {
     );
 };
 
-export default PetCard;
+export default PetTypeCard;

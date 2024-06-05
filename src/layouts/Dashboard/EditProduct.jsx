@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const EditProduct = () => {
     const { user } = useContext(AuthContext)
+    const token = localStorage.getItem('token')
     const pets = useLoaderData()
     const { name, image, breed, location, food, _id, email, type, age, text, color } = pets
     console.log(pets);
@@ -48,10 +49,11 @@ const EditProduct = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/pets/${_id}`, {
+                fetch(`https://pet-care-server-wheat.vercel.app/pets/${_id}`, {
                     method: "PATCH",
                     headers: {
-                        'Content-type': 'application/json'
+                        'Content-type': 'application/json',
+                        authorization:`Bearer ${token}`
                     },
                     body: JSON.stringify(petInfo)
                 }).then(res => res.json())

@@ -5,12 +5,12 @@ import SinglePetCards from "./SinglePetCards";
 import { AuthContext } from "../../authContext/AuthProvider";
 
 
-const AllPets = () => {
+const MyAllPets = () => {
     const {user} = useContext(AuthContext)
     const [pets, setPets] = useState([])
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/pets/get/${user?.email}`)
+        fetch(`https://pet-care-server-wheat.vercel.app/pets/get/${user?.email}`)
         .then(res=>res.json())
         .then(data =>{
             setPets(data)
@@ -28,7 +28,7 @@ const AllPets = () => {
         <div>
             
         <h2 className="text-3xl text-center font-bold my-10">Here is your cute pets</h2>
-                <div className="flex flex-wrap justify-center gap-5">
+                <div className="lg:grid grid-cols-3 gap-5">
                     {
                         pets.map(pet => <SinglePetCards key={pet._id} pet={pet} onDelete={handleDeletePet}/>)
                     }
@@ -39,4 +39,4 @@ const AllPets = () => {
     );
 };
 
-export default AllPets;
+export default MyAllPets;

@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 
 const AddPets = () => {
     const { user } = useContext(AuthContext)
+    const token = localStorage.getItem('token')
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -44,10 +45,11 @@ const AddPets = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch('http://localhost:5000/pets', {
+                fetch('https://pet-care-server-wheat.vercel.app/pets', {
                     method: "POST",
                     headers: {
-                        'Content-type': 'application/json'
+                        'Content-type': 'application/json',
+                        authorization:`Bearer ${token}`
                     },
                     body: JSON.stringify(petInfo)
                 }).then(res => res.json())
@@ -71,7 +73,7 @@ const AddPets = () => {
             <form onSubmit={handleSubmit}>
                 <div className="lg:grid w-full grid-cols-2 gap-x-6">
 
-                    <div>
+                    <div hidden>
                         <label>User Email</label>
                         <input type="text" required name="email" defaultValue={user?.email} disabled className="w-full border text-opacity-30 p-1 border-gray-500 rounded" />
                     </div>
@@ -110,6 +112,7 @@ const AddPets = () => {
                             <option value="cat">Cat</option>
                             <option value="dog">Dog</option>
                             <option value="rabbit">Rabbit</option>
+                            <option value="bird">Bird</option>
                         </select>
 
                     </div>
